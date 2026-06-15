@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AURA - Instagram Premium Platform</title>
+    
+    <!-- Official Instagram Favicon for High Brand Authenticity -->
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
+    
+    <!-- Inter Font & Tailwind CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        aura: {
+                            pink: '#FF2A54',
+                            magenta: '#FF007F',
+                            violet: '#7B2CBF',
+                            cyan: '#00F5D4',
+                            darkBg: '#09090b',
+                            lightBg: '#f8fafc'
+                        }
+                    },
+                    animation: {
+                        'spin-slow': 'spin 12s linear infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+        }
+        /* Custom Premium Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 9999px;
+        }
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .dark .glass-panel {
+            background: rgba(9, 9, 11, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        /* Hide scrollbar utility */
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-[#09090b] text-slate-900 dark:text-zinc-100 min-h-screen transition-colors duration-500 overflow-x-hidden font-sans dark">
+
+    <!-- 1. PREMIUM SPLASH PRELOADER -->
+    <div id="preloader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#07070a] transition-all duration-700 ease-in-out">
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#1f29370a_1px,transparent_1px),linear-gradient(to_bottom,#1f29370a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+        
+        <div class="relative flex flex-col items-center justify-center z-10">
+            <!-- Glowing Rotating Rings -->
+            <div class="absolute w-44 h-44 rounded-full border border-dashed border-[#FF007F]/30 animate-spin-slow"></div>
+            <div class="absolute w-40 h-40 rounded-full border border-double border-t-2 border-r-2 border-[#00F5D4] animate-spin" style="animation-duration: 3s;"></div>
+            <div class="absolute w-48 h-48 rounded-full bg-gradient-to-tr from-[#FF2A54]/10 via-transparent to-[#7B2CBF]/15 blur-xl"></div>
+
+            <!-- Glowing Instagram Camera Logo Reveal -->
+            <div class="relative p-6 bg-zinc-900/60 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl scale-110 animate-pulse-slow">
+                <div class="relative w-16 h-16 flex items-center justify-center">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-[#FF2A54] to-[#7B2CBF] rounded-full opacity-70 blur-md"></div>
+                    <div class="relative z-10 w-12 h-12 rounded-full bg-black flex items-center justify-center">
+                        <!-- Instagram SVG Logo with custom gradient definition -->
+                        <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="6" stroke="url(#loaderGrad)" stroke-width="2.5"/>
+                            <circle cx="12" cy="12" r="5" stroke="url(#loaderGrad)" stroke-width="2.5"/>
+                            <circle cx="18" cy="6" r="1.5" fill="url(#loaderGrad)"/>
+                            <defs>
+                                <linearGradient id="loaderGrad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#00F5D4"/>
+                                    <stop offset="0.5" stop-color="#FF007F"/>
+                                    <stop offset="1" stop-color="#7B2CBF"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platform Brand Title -->
+            <h1 class="mt-8 text-4xl font-black tracking-[0.25em] bg-gradient-to-r from-white via-slate-300 to-zinc-500 bg-clip-text text-transparent uppercase">
+                A U R A
+            </h1>
+            <p class="mt-2 text-[10px] tracking-[0.4em] text-zinc-500 uppercase">Interactive Luxury Social</p>
+
+            <!-- Loading progress meter -->
+            <div class="w-56 h-1.5 bg-zinc-800/80 rounded-full mt-10 overflow-hidden relative">
+                <div id="preloader-bar" class="h-full bg-gradient-to-r from-[#00F5D4] via-[#FF007F] to-[#7B2CBF] rounded-full transition-all duration-300 ease-out" style="width: 0%;"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-pulse" style="width: 100%;"></div>
+            </div>
+
+            <div id="preloader-percent" class="mt-3 font-mono text-sm tracking-wider text-[#00F5D4] font-semibold">0%</div>
+        </div>
+
+        <div class="absolute bottom-8 text-[11px] tracking-widest text-zinc-600 uppercase">Aura Engine v3.0 • Premium Edition</div>
+    </div>
+
+    <!-- 2. STORY VIEWER MODAL -->
+    <div id="story-viewer" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/95 backdrop-blur-xl transition-all duration-300 p-4">
+        <div class="relative w-full max-w-lg h-full max-h-[90vh] md:rounded-3xl overflow-hidden bg-zinc-950 flex flex-col justify-between p-4 shadow-2xl border border-white/10">
+            <!-- Top Segment: Progress and Author Profile -->
+            <div>
+                <!-- Progress Indicators -->
+                <div id="story-progress-container" class="flex space-x-1.5 w-full px-2 mt-2">
+                    <!-- Progress bars loaded dynamically -->
+                </div>
+
+                <!-- Author Info -->
+                <div class="flex items-center justify-between px-2 mt-4">
+                    <div class="flex items-center space-x-3">
+                        <img id="story-viewer-avatar" src="" class="w-10 h-10 rounded-full border-2 border-pink-500 object-cover" alt="Avatar">
+                        <div>
+                            <span id="story-viewer-username" class="font-semibold text-white text-sm block">username</span>
+                            <span class="text-zinc-400 text-xs font-mono">Dynamic Aura Stories</span>
+                        </div>
+                    </div>
+                    <!-- Close Trigger -->
+                    <button onclick="closeStoryViewer()" class="p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Center Image Container -->
+            <div class="my-auto relative aspect-[9/16] w-full max-h-[65vh] rounded-2xl overflow-hidden bg-zinc-900 border border-white/5">
+                <img id="story-viewer-img" src="" class="w-full h-full object-cover transition-all duration-350" alt="Story Asset">
+                
+                <!-- Tap Navigation Overlays -->
+                <div class="absolute left-0 top-0 bottom-0 w-1/3 cursor-pointer" onclick="prevStorySlide()"></div>
+                <div class="absolute right-0 top-0 bottom-0 w-1/3 cursor-pointer" onclick="nextStorySlide()"></div>
+            </div>
+
+            <!-- Bottom Segment: Reaction Deck -->
+            <div class="px-2 pb-2">
+                <div class="flex space-x-2 mb-4 justify-center">
+                    <button onclick="reactToStory('🔥')" class="p-2.5 bg-white/10 hover:bg-white/25 rounded-xl hover:scale-125 transition text-lg duration-200">🔥</button>
+                    <button onclick="reactToStory('😍')" class="p-2.5 bg-white/10 hover:bg-white/25 rounded-xl hover:scale-125 transition text-lg duration-200">😍</button>
+                    <button onclick="reactToStory('👏')" class="p-2.5 bg-white/10 hover:bg-white/25 rounded-xl hover:scale-125 transition text-lg duration-200">👏</button>
+                    <button onclick="reactToStory('😂')" class="p-2.5 bg-white/10 hover:bg-white/25 rounded-xl hover:scale-125 transition text-lg duration-200">😂</button>
+                    <button onclick="reactToStory('💯')" class="p-2.5 bg-white/10 hover:bg-white/25 rounded-xl hover:scale-125 transition text-lg duration-200">💯</button>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <input id="story-reply-input" type="text" placeholder="Send premium reply..." class="flex-grow py-3 px-4 rounded-xl bg-white/10 border border-white/10 text-white text-sm focus:outline-none focus:ring-1 focus:ring-pink-500 placeholder-zinc-400">
+                    <button onclick="sendStoryReply()" class="py-3 px-5 rounded-xl bg-gradient-to-r from-[#FF2A54] to-[#7B2CBF] text-white text-sm font-semibold hover:shadow-lg transition">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. APPLICATION CONTAINER -->
+    <div id="app-shell" class="hidden h-screen overflow-hidden">
+        
+        <!-- SIDEBAR - DESKTOP ONLY -->
+        <aside class="hidden lg:flex flex-col justify-between w-72 h-full border-r border-zinc-200/50 dark:border-zinc-800/60 p-6 flex-shrink-0 bg-white/80 dark:bg-black/60 backdrop-blur-xl z-20">
+            <div class="space-y-8">
+                <!-- Branding Header -->
+                <div class="flex items-center space-x-3 px-2 cursor-pointer" onclick="switchTab('feed')">
+                    <div class="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-[#FF007F] to-[#7B2CBF] p-[2px]">
+                        <div class="w-full h-full bg-[#09090b] rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="2" width="20" height="20" rx="5" stroke="url(#sidebarGrad)" stroke-width="2"/>
+                                <circle cx="12" cy="12" r="4" stroke="url(#sidebarGrad)" stroke-width="2"/>
+                                <circle cx="17.5" cy="6.5" r="1" fill="url(#sidebarGrad)"/>
+                                <defs>
+                                    <linearGradient id="sidebarGrad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#00F5D4"/>
+                                        <stop offset="1" stop-color="#FF007F"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Tabs -->
+                <nav class="space-y-1">
+                    <button onclick="switchTab('feed')" data-tab-btn="feed" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all duration-300 text-pink-500 dark:text-white bg-gradient-to-r from-pink-500/10 to-violet-500/10 border-l-4 border-pink-500 font-semibold">
+                        <div class="flex items-center space-x-4">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                            <span class="text-sm">Feed Dashboard</span>
+                        </div>
+                    </button>
+                    <button onclick="switchTab('explore')" data-tab-btn="explore" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all duration-300 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-800 dark:hover:text-zinc-200">
+                        <div class="flex items-center space-x-4">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-2-9-9-2 2 9zm0 0l-9-2 2-9 9 2-2 9z" /></svg>
+                            <span class="text-sm">Discovery Grid</span>
+                        </div>
+                    </button>
+                    <button onclick="switchTab('reels')" data-tab-btn="reels" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all duration-300 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-800 dark:hover:text-zinc-200">
+                        <div class="flex items-center space-x-4">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" /></svg>
+                            <span class="text-sm">Aura Reels</span>
+                        </div>
+                    </button>
+                    <button onclick="switchTab('create')" data-tab-btn="create" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all duration-300 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-800 dark:hover:text-zinc-200">
+                        <div class="flex items-center space-x-4">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <span class="text-sm">Creative Studio</span>
+                        </div>
+                    </button>
+                    <button onclick="switchTab('messages')" data-tab-btn="messages" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all duration-300 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-800 dark:hover:text-zinc-200">
+                        <div class="flex items-center space-x-4">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                            <span class="text-sm">Immersive DMs</span>
+                        </div>
+                        <span class="bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold font-mono text-[10px] px-2 py-0.5 rounded-full shadow-md">2</span>
+                    </button>
+                    <button onclick="switchTab('notifications')" data-tab-btn="notifications" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all duration-300 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-800 dark:hover:text-zinc-200">
+                        <div class="flex items-center space-x-4">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+                            <span class="text-sm">Pulse Alerts</span>
+                        </div>
+                        <span class="bg-gradient-to-r from-teal-400 to-emerald-500 text-white font-bold font-mono text-[10px] px-2 py-0.5 rounded-full shadow-md">New</span>
+                    </button>
+                    <button onclick="switchTab('analytics')" data-tab-btn="analytics" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all duration-300 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-800 dark:hover:text-zinc-200">
+                        <div class="flex items-center space-x-4">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                            <span class="text-sm">Brand Insights</span>
+                        </div>
+                    </button>
+                    <button onclick="switchTab('profile')" data-tab-btn="profile" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all duration-300 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-800 dark:hover:text-zinc-200">
+                        <div class="flex items-center space-x-4">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                            <span class="text-sm">Luxury Profile</span>
+                        </div>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Sidebar Footer Controls -->
+            <div class="space-y-4">
+                <div class="p-4 rounded-3xl bg-zinc-100 dark:bg-zinc-900/60 border border-zinc-200/40 dark:border-zinc-800/50 flex items-center justify-between">
+                    <span class="text-xs font-semibold tracking-wider text-zinc-500 uppercase">Aura Mode</span>
+                    <button onclick="toggleTheme()" class="p-2 rounded-xl bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 hover:scale-110 transition shadow-sm cursor-pointer">
+                        <svg class="w-4 h-4 text-yellow-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.364l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" /></svg>
+                        <svg class="w-4 h-4 text-violet-500 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                    </button>
+                </div>
+                
+                <div class="flex items-center space-x-3 px-3">
+                    <img id="user-pfp-sidemenu" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&h=400&q=80" class="w-10 h-10 rounded-xl object-cover border border-white/20" alt="Self">
+                    <div class="truncate">
+                        <p class="text-xs font-semibold truncate" id="profile-displayname-sidemenu">Aura Luxury</p>
+                        <p class="text-[10px] text-zinc-400 truncate" id="profile-username-sidemenu">@aura.revelation</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN VIEW PORT -->
+        <main class="flex-grow flex flex-col h-full overflow-hidden relative">
+            
+            <!-- RESPONSIVE HEADER -->
+            <header class="sticky top-0 w-full z-10 bg-white/80 dark:bg-[#09090b]/80 backdrop-blur-xl border-b border-zinc-200/50 dark:border-zinc-800/40 px-4 md:px-8 py-4 flex items-center justify-between">
+                <!-- Mobile Logo -->
+                <div class="flex items-center space-x-3 lg:hidden">
+                    <div class="relative w-8 h-8 rounded-lg bg-gradient-to-tr from-[#FF007F] to-[#7B2CBF] p-[1.5px]">
+                        <div class="w-full h-full bg-[#09090b] rounded-lg flex items-center justify-center">
+                            <!-- Instagram SVG Logo on Mobile -->
+                            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="2" width="20" height="20" rx="5" stroke="url(#mobileLogoGrad)" stroke-width="2"/>
+                                <circle cx="12" cy="12" r="4" stroke="url(#mobileLogoGrad)" stroke-width="2"/>
+                                <circle cx="17.5" cy="6.5" r="1" fill="url(#mobileLogoGrad)"/>
+                                <defs>
+                                    <linearGradient id="mobileLogoGrad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FF007F"/>
+                                        <stop offset="1" stop-color="#7B2CBF"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="font-black text-lg tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-[#00F5D4]">AURA</span>
+                </div>
+
+                <!-- Desktop / Tablet Search Frame -->
+                <div class="hidden md:flex items-center space-x-3 bg-zinc-100/80 dark:bg-zinc-900/50 border border-zinc-200/40 dark:border-zinc-800/60 rounded-2xl px-4 py-2 w-72 focus-within:w-80 transition-all duration-300">
+                    <svg class="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    <input type="text" placeholder="Search premium trends..." class="bg-transparent border-none text-xs focus:outline-none w-full placeholder-zinc-400 text-zinc-800 dark:text-zinc-200">
+                </div>
+
+                <!-- Fast Actions -->
+                <div class="flex items-center space-x-3">
+                    <button onclick="switchTab('create')" class="px-4 py-2 rounded-xl bg-gradient-to-r from-[#FF2A54] to-[#7B2CBF] hover:shadow-lg hover:shadow-pink-500/20 text-white font-semibold text-xs tracking-wider uppercase transition-all duration-300">
+                        + Edit Post
+                    </button>
+                    <!-- Mobile theme toggle -->
+                    <button onclick="toggleTheme()" class="p-2.5 rounded-xl border border-zinc-200/60 dark:border-zinc-800/80 dark:bg-zinc-900 bg-zinc-100 block lg:hidden cursor-pointer hover:scale-105 transition">
+                        <svg class="w-4 h-4 text-zinc-700 dark:text-zinc-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.364l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" /></svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- TAB VIEWS CONTAINER -->
+            <div class="flex-grow overflow-y-auto overflow-x-hidden p-4 md:p-8 space-y-8 scrollbar-thin pb-24 lg:pb-8">
+                
+                <!-- VIEW 1: HOME FEED -->
+                <div id="view-feed" class="tab-view max-w-4xl mx-auto space-y-8">
+                    <!-- Stories Slide list -->
+                    <div class="space-y-3">
+                        <h3 class="text-xs font-black tracking-[0.25em] text-zinc-400 uppercase">Ethereal Live Stories</h3>
+                        <div id="stories-deck" class="flex space-x-4 overflow-x-auto pb-2 scrollbar-none">
+                            <!-- Injected dynamically with premium ring styles -->
+                        </div>
+                    </div>
+
+                    <!-- Feed Grid Feed Card Stack -->
+                    <div id="posts-container" class="grid grid-cols-1 gap-8 max-w-xl mx-auto">
+                        <!-- Post templates render here -->
+                    </div>
+                </div>
+
+                <!-- VIEW 2: DISCOVERY EXPLORE GRID -->
+                <div id="view-explore" class="tab-view hidden max-w-6xl mx-auto space-y-8">
+                    <div class="p-8 rounded-3xl bg-gradient-to-r from-zinc-900 via-zinc-800 to-purple-950 text-white relative overflow-hidden shadow-xl border border-white/10">
+                        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-tr from-[#FF007F]/20 to-transparent rounded-full blur-3xl"></div>
+                        <div class="relative z-10 max-w-md space-y-3">
+                            <span class="text-[9px] uppercase tracking-[0.4em] text-[#00F5D4] font-black font-mono">Curated Visual Feed</span>
+                            <h2 class="text-3xl font-black tracking-tight leading-none uppercase">Explore Meta Aesthetics</h2>
+                            <p class="text-xs text-zinc-400">Discover digital spaces showcasing high-end photography, spatial modular layouts, and luxury color palettes.</p>
+                        </div>
+                    </div>
+
+                    <!-- Category filter slider -->
+                    <div class="flex space-x-2.5 overflow-x-auto pb-1.5 scrollbar-none">
+                        <button class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-black text-white dark:bg-white dark:text-black shadow-md">Trending All</button>
+                        <button class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200/50 dark:hover:bg-zinc-800 text-zinc-500">Architecture</button>
+                        <button class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200/50 dark:hover:bg-zinc-800 text-zinc-500">Cyberpunk</button>
+                        <button class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200/50 dark:hover:bg-zinc-800 text-zinc-500">High Fashion</button>
+                        <button class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200/50 dark:hover:bg-zinc-800 text-zinc-500">Neon Dreams</button>
+                    </div>
+
+                    <!-- Grid System -->
+                    <div id="explore-grid" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <!-- Dynamic Explore assets rendering dynamically -->
+                    </div>
+                </div>
+
+                <!-- VIEW 3: REELS -->
+                <div id="view-reels" class="tab-view hidden max-w-lg mx-auto space-y-4">
+                    <div class="text-center">
+                        <span class="text-[9px] tracking-[0.3em] font-mono text-pink-500 uppercase font-black">Full-Vertical Motion</span>
+                        <h2 class="text-2xl font-black tracking-tight uppercase mt-1">Aura Reels Loop</h2>
+                    </div>
+
+                    <div class="relative w-full aspect-[9/16] rounded-3xl bg-zinc-950 border border-zinc-200/20 dark:border-zinc-800/80 overflow-hidden shadow-2xl">
+                        <!-- Simulated Loop Content image overlay representation -->
+                        <img id="reel-element-img" src="https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&h=1100&q=80" class="w-full h-full object-cover brightness-[0.8]" alt="Reel Media">
+                        
+                        <!-- Side Control Tray -->
+                        <div class="absolute right-4 bottom-24 flex flex-col items-center space-y-6 z-10">
+                            <div class="flex flex-col items-center">
+                                <button onclick="triggerReelLike()" class="p-3 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-pink-500 hover:scale-110 transition">
+                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="currentColor"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                </button>
+                                <span id="reel-likes-count" class="text-[10px] font-mono text-white mt-1">4.2K</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <button class="p-3 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white hover:scale-110 transition">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                                </button>
+                                <span class="text-[10px] font-mono text-white mt-1">295</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <button onclick="triggerReelShare()" class="p-3 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white hover:scale-110 transition">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-2-9-9-2 2 9zm0 0l-9-2 2-9 9 2-2 9z" /></svg>
+                                </button>
+                                <span class="text-[10px] font-mono text-white mt-1">Share</span>
+                            </div>
+                        </div>
+
+                        <!-- Reels Overlay Description text -->
+                        <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black via-black/40 to-transparent pt-12 text-white">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80" class="w-9 h-9 rounded-full border border-pink-500 object-cover" alt="Author">
+                                <div>
+                                    <span class="font-bold text-xs tracking-wider">cyber_archetype</span>
+                                    <span class="text-[10px] block text-[#00F5D4] font-mono">Original Audio Sequence</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-zinc-200 leading-relaxed">Capturing light across neon-filled street corridors. Rendered instantly from Creative Studio parameters. #tokyo #reels #aesthetics</p>
+                        </div>
+                    </div>
+                    <button onclick="nextReelDemo()" class="w-full py-3 rounded-2xl bg-zinc-100 dark:bg-zinc-900 font-bold text-xs uppercase text-zinc-500 dark:hover:text-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">Next Reel</button>
+                </div>
+
+                <!-- VIEW 4: CREATIVE STUDIO -->
+                <div id="view-create" class="tab-view hidden max-w-4xl mx-auto space-y-8">
+                    <div class="flex items-center justify-between border-b border-zinc-200/50 dark:border-zinc-800/40 pb-4">
+                        <div>
+                            <span class="text-[9px] font-black tracking-widest text-[#00F5D4] uppercase font-mono">Interactive Editing Node</span>
+                            <h2 class="text-2xl font-black uppercase">Creative Studio</h2>
+                        </div>
+                        <button onclick="publishStudioPost()" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#FF2A54] to-[#7B2CBF] hover:shadow-lg text-white font-bold text-xs tracking-wider uppercase transition-all">Publish to Feed</button>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Editing Panel Canvas Preview -->
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-3xl bg-zinc-100 dark:bg-zinc-900/40 border border-zinc-200/40 dark:border-zinc-800/60">
+                                <div class="flex justify-between items-center mb-3">
+                                    <h3 class="text-xs font-bold uppercase text-zinc-400">Render Canvas Preview</h3>
+                                    <button onclick="togglePreviewMode()" class="text-[10px] text-pink-500 font-semibold uppercase hover:underline">Change Base Image</button>
+                                </div>
+                                <div class="aspect-square w-full rounded-2xl overflow-hidden bg-zinc-950 border border-white/5 relative">
+                                    <img id="studio-preview-img" src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&h=800&q=80" class="w-full h-full object-cover transition-all duration-150" alt="Studio Preview">
+                                </div>
+                            </div>
+
+                            <!-- Visual presets selection -->
+                            <div class="space-y-2">
+                                <span class="text-[10px] uppercase font-mono tracking-wider text-zinc-500">Preset LUTs / Aesthetics</span>
+                                <div class="grid grid-cols-2 md:grid-cols-5 gap-2">
+                                    <button onclick="applyPreset('Normal')" class="preset-btn p-2 rounded-xl text-[10px] font-bold uppercase bg-pink-500 text-white transition">Normal</button>
+                                    <button onclick="applyPreset('Noir')" class="preset-btn p-2 rounded-xl text-[10px] font-bold uppercase bg-zinc-100 dark:bg-zinc-900 text-zinc-400 hover:bg-zinc-800 transition">Noir</button>
+                                    <button onclick="applyPreset('Cyberpunk')" class="preset-btn p-2 rounded-xl text-[10px] font-bold uppercase bg-zinc-100 dark:bg-zinc-900 text-zinc-400 hover:bg-zinc-800 transition">Cyberpunk</button>
+                                    <button onclick="applyPreset('Ethereal')" class="preset-btn p-2 rounded-xl text-[10px] font-bold uppercase bg-zinc-100 dark:bg-zinc-900 text-zinc-400 hover:bg-zinc-800 transition">Ethereal</button>
+                                    <button onclick="applyPreset('Luxury Gold')" class="preset-btn p-2 rounded-xl text-[10px] font-bold uppercase bg-zinc-100 dark:bg-zinc-900 text-zinc-400 hover:bg-zinc-800 transition">Gold</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Parameter Sliders -->
+                        <div class="space-y-6">
+                            <div class="p-5 rounded-3xl bg-zinc-100 dark:bg-zinc-900/40 border border-zinc-200/30 dark:border-zinc-800/50 space-y-4">
+                                <h3 class="text-xs font-bold uppercase text-zinc-400 flex items-center space-x-1.5">
+                                    <svg class="w-4 h-4 text-[#00F5D4]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
+                                    <span>Visual Engine Controls</span>
+                                </h3>
+
+                                <div class="space-y-3">
+                                    <!-- Exposure slider -->
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between text-[11px] font-semibold text-zinc-500">
+                                            <span>Exposure / Brightness</span>
+                                            <span id="label-brightness" class="font-mono text-[#00F5D4]">100%</span>
+                                        </div>
+                                        <input type="range" id="slider-brightness" min="50" max="150" value="100" class="w-full h-1 bg-zinc-300 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-pink-500" oninput="updateStudioFilters()">
+                                    </div>
+                                    <!-- Contrast slider -->
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between text-[11px] font-semibold text-zinc-500">
+                                            <span>Contrast Balance</span>
+                                            <span id="label-contrast" class="font-mono text-[#00F5D4]">100%</span>
+                                        </div>
+                                        <input type="range" id="slider-contrast" min="50" max="150" value="100" class="w-full h-1 bg-zinc-300 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-pink-500" oninput="updateStudioFilters()">
+                                    </div>
+                                    <!-- Saturation slider -->
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between text-[11px] font-semibold text-zinc-500">
+                                            <span>Chroma Saturation</span>
+                                            <span id="label-saturate" class="font-mono text-[#00F5D4]">100%</span>
+                                        </div>
+                                        <input type="range" id="slider-saturate" min="0" max="200" value="100" class="w-full h-1 bg-zinc-300 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-pink-500" oninput="updateStudioFilters()">
+                                    </div>
+                                    <!-- Blur slider -->
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between text-[11px] font-semibold text-zinc-500">
+                                            <span>Ethereal Ambient Blur</span>
+                                            <span id="label-blur" class="font-mono text-[#00F5D4]">0px</span>
+                                        </div>
+                                        <input type="range" id="slider-blur" min="0" max="10" value="0" class="w-full h-1 bg-zinc-300 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-pink-500" oninput="updateStudioFilters()">
+                                    </div>
+                                    <!-- Hue Rotate slider -->
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between text-[11px] font-semibold text-zinc-500">
+                                            <span>Chromatic Hue Shift</span>
+                                            <span id="label-hue" class="font-mono text-[#00F5D4]">0deg</span>
+                                        </div>
+                                        <input type="range" id="slider-hue" min="0" max="360" value="0" class="w-full h-1 bg-zinc-300 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-pink-500" oninput="updateStudioFilters()">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Meta Inputs -->
+                            <div class="space-y-4">
+                                <div class="space-y-1">
+                                    <label class="text-xs font-semibold text-zinc-500">Dialogue Caption</label>
+                                    <textarea id="studio-caption-input" placeholder="Synthesize your vision narrative..." rows="3" class="w-full px-4 py-3 rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-800/60 text-xs focus:outline-none focus:ring-1 focus:ring-pink-500 text-zinc-800 dark:text-zinc-200"></textarea>
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-xs font-semibold text-zinc-500">Location Tagging</label>
+                                    <input id="studio-location-input" type="text" placeholder="e.g. Metastate Offices, Neo Tokyo" class="w-full px-4 py-3 rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-800/60 text-xs focus:outline-none text-zinc-800 dark:text-zinc-200">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW 5: MESSAGES / DMS -->
+                <div id="view-messages" class="tab-view hidden max-w-5xl mx-auto h-[78vh] flex bg-white dark:bg-zinc-950 rounded-3xl border border-zinc-200/60 dark:border-zinc-800/80 overflow-hidden shadow-2xl">
+                    <!-- Directory side panel -->
+                    <div class="w-full md:w-80 border-r border-zinc-200/60 dark:border-zinc-800/80 flex flex-col h-full bg-zinc-50/50 dark:bg-zinc-900/20">
+                        <div class="p-4 border-b border-zinc-200/50 dark:border-zinc-800/60">
+                            <span class="text-[9px] uppercase tracking-wider font-mono font-black text-pink-500 block mb-2">Private Secure Nodes</span>
+                            <input id="chat-search" type="text" placeholder="Search live nodes..." oninput="filterChatDirectory()" class="w-full px-4 py-2 text-xs rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-800/60 focus:outline-none focus:ring-1 focus:ring-pink-500 text-zinc-800 dark:text-zinc-200">
+                        </div>
+                        <div id="chat-directory" class="flex-grow overflow-y-auto p-2 space-y-1">
+                            <!-- Populated with dynamic user directory cards -->
+                        </div>
+                    </div>
+
+                    <!-- Active Dialog stream window -->
+                    <div id="active-chat-container" class="hidden md:flex flex-grow flex-col h-full bg-white dark:bg-[#08080a]">
+                        <!-- Conversation Header -->
+                        <div class="p-4 border-b border-zinc-200/50 dark:border-zinc-800/60 flex items-center justify-between bg-zinc-50/50 dark:bg-zinc-900/10">
+                            <div class="flex items-center space-x-3">
+                                <img id="active-chat-avatar" src="" class="w-10 h-10 rounded-xl object-cover" alt="Avatar">
+                                <div>
+                                    <span id="active-chat-name" class="text-xs font-bold block">Active User</span>
+                                    <span class="text-[10px] text-emerald-400 font-mono flex items-center space-x-1">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                                        <span id="active-chat-status">Online • Encrypted</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chat bubble timeline -->
+                        <div id="chat-timeline" class="flex-grow overflow-y-auto p-6 space-y-4">
+                            <!-- Dialog boxes loaded dynamically -->
+                        </div>
+
+                        <!-- Input field dock -->
+                        <form id="chat-form" class="p-4 border-t border-zinc-200/50 dark:border-zinc-800/60 flex items-center space-x-3" onsubmit="submitChatMessage(event)">
+                            <input id="chat-input" type="text" placeholder="Formulate encrypted communication..." class="flex-grow px-4 py-3 text-xs rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-800/60 focus:outline-none focus:ring-1 focus:ring-pink-500 text-zinc-800 dark:text-zinc-200">
+                            <button type="submit" class="p-3 rounded-xl bg-gradient-to-r from-[#FF2A54] to-[#7B2CBF] text-white hover:shadow-lg transition">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-2-9-9-2 2 9zm0 0l-9-2 2-9 9 2-2 9z" /></svg>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Placeholder if no chat has been triggered yet -->
+                    <div id="chat-placeholder" class="hidden md:flex flex-grow flex-col items-center justify-center text-center p-6 bg-white dark:bg-[#08080a]">
+                        <svg class="w-16 h-16 text-zinc-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                        <h4 class="text-sm font-bold uppercase tracking-wider text-zinc-300">Your Secure Messenger</h4>
+                        <p class="text-xs text-zinc-500 mt-2 max-w-xs">Select any secure directory node on the left side to begin live end-to-end encrypted chats.</p>
+                    </div>
+                </div>
+
+                <!-- VIEW 6: NOTIFICATIONS -->
+                <div id="view-notifications" class="tab-view hidden max-w-3xl mx-auto space-y-6">
+                    <div>
+                        <span class="text-[9px] font-black tracking-widest text-[#00F5D4] uppercase font-mono">Pulse Audit Logs</span>
+                        <h2 class="text-2xl font-black uppercase">Recent Activity</h2>
+                    </div>
+
+                    <div id="notifications-stack" class="space-y-3">
+                        <!-- Activity rows injected dynamically -->
+                    </div>
+                </div>
+
+                <!-- VIEW 7: BRAND INSIGHTS / ANALYTICS -->
+                <div id="view-analytics" class="tab-view hidden max-w-5xl mx-auto space-y-8">
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <span class="text-[9px] font-black tracking-widest text-[#00F5D4] uppercase font-mono">Performance telemetry</span>
+                            <h2 class="text-2xl font-black uppercase">Aura Brand Insights</h2>
+                        </div>
+                        <span class="text-[10px] font-mono text-zinc-400 bg-zinc-100 dark:bg-zinc-900 px-3 py-1.5 rounded-xl border border-zinc-200/40 dark:border-zinc-800/60">Live Updates Engaged</span>
+                    </div>
+
+                    <!-- Metrics Cards -->
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="p-5 rounded-3xl bg-white dark:bg-zinc-900/40 border border-zinc-200/40 dark:border-zinc-800/50 space-y-2">
+                            <span class="text-[10px] tracking-wider text-zinc-500 uppercase block">Visual Impressions</span>
+                            <div class="flex justify-between items-baseline">
+                                <span class="text-2xl font-black text-[#00F5D4]">1.24M</span>
+                                <span class="text-[10px] font-bold text-emerald-500 font-mono">+14.8%</span>
+                            </div>
+                        </div>
+                        <div class="p-5 rounded-3xl bg-white dark:bg-zinc-900/40 border border-zinc-200/40 dark:border-zinc-800/50 space-y-2">
+                            <span class="text-[10px] tracking-wider text-zinc-500 uppercase block">Net Followers</span>
+                            <div class="flex justify-between items-baseline">
+                                <span class="text-2xl font-black text-purple-400">128.4K</span>
+                                <span class="text-[10px] font-bold text-emerald-500 font-mono">+8.3%</span>
+                            </div>
+                        </div>
+                        <div class="p-5 rounded-3xl bg-white dark:bg-zinc-900/40 border border-zinc-200/40 dark:border-zinc-800/50 space-y-2">
+                            <span class="text-[10px] tracking-wider text-zinc-500 uppercase block">Engagement Rate</span>
+                            <div class="flex justify-between items-baseline">
+                                <span class="text-2xl font-black text-pink-500">12.4%</span>
+                                <span class="text-[10px] font-bold text-emerald-500 font-mono">+3.1%</span>
+                            </div>
+                        </div>
+                        <div class="p-5 rounded-3xl bg-white dark:bg-zinc-900/40 border border-zinc-200/40 dark:border-zinc-800/50 space-y-2">
+                            <span class="text-[10px] tracking-wider text-zinc-500 uppercase block">Partner Conversions</span>
+                            <div class="flex justify-between items-baseline">
+                                <span class="text-2xl font-black text-amber-400">482</span>
+                                <span class="text-[10px] font-bold text-emerald-500 font-mono">+21.4%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SVG interactive graph -->
+                    <div class="p-6 rounded-3xl bg-white dark:bg-zinc-900/30 border border-zinc-200/40 dark:border-zinc-800/50 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="text-xs font-bold uppercase text-zinc-400">Impression Flow telemetry (Weekly)</h3>
+                                <p class="text-xl font-black">748,200 High Fidelity Views</p>
+                            </div>
+                            <div id="chart-tooltip" class="bg-[#09090b] text-white px-3 py-1 rounded-xl text-[10px] font-mono border border-zinc-800">
+                                Click node to view details
+                            </div>
+                        </div>
+
+                        <!-- Graph Canvas Vector -->
+                        <div class="relative h-64 w-full">
+                            <svg class="w-full h-full" viewBox="0 0 1000 300" preserveAspectRatio="none">
+                                <defs>
+                                    <linearGradient id="gradientLine" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#FF2A54" stop-opacity="0.4" />
+                                        <stop offset="100%" stop-color="#7B2CBF" stop-opacity="0.0" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M0 300 L100 220 L250 180 L400 240 L550 120 L700 150 L850 80 L1000 50 L1000 300 Z" fill="url(#gradientLine)" />
+                                <path d="M0 300 L100 220 L250 180 L400 240 L550 120 L700 150 L850 80 L1000 50" fill="none" stroke="#FF007F" stroke-width="4" stroke-linecap="round" />
+                                
+                                <!-- Data nodes -->
+                                <circle cx="100" cy="220" r="7" fill="#00F5D4" class="cursor-pointer hover:r-10 transition-all duration-300" onclick="showChartDetails('Mon', '22K Views')" />
+                                <circle cx="250" cy="180" r="7" fill="#00F5D4" class="cursor-pointer hover:r-10 transition-all duration-300" onclick="showChartDetails('Tue', '34K Views')" />
+                                <circle cx="400" cy="240" r="7" fill="#00F5D4" class="cursor-pointer hover:r-10 transition-all duration-300" onclick="showChartDetails('Wed', '18K Views')" />
+                                <circle cx="550" cy="120" r="7" fill="#00F5D4" class="cursor-pointer hover:r-10 transition-all duration-300" onclick="showChartDetails('Thu', '58K Views')" />
+                                <circle cx="700" cy="150" r="7" fill="#00F5D4" class="cursor-pointer hover:r-10 transition-all duration-300" onclick="showChartDetails('Fri', '44K Views')" />
+                                <circle cx="850" cy="80" r="7" fill="#00F5D4" class="cursor-pointer hover:r-10 transition-all duration-300" onclick="showChartDetails('Sat', '78K Views')" />
+                                <circle cx="1000" cy="50" r="7" fill="#00F5D4" class="cursor-pointer hover:r-10 transition-all duration-300" onclick="showChartDetails('Sun', '95K Views')" />
+                            </svg>
+                        </div>
+                        <div class="flex justify-between text-[10px] font-mono text-zinc-500 uppercase">
+                            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW 8: USER PROFILE -->
+                <div id="view-profile" class="tab-view hidden max-w-5xl mx-auto space-y-8">
+                    <div class="relative rounded-3xl overflow-hidden bg-white dark:bg-zinc-900/40 border border-zinc-200/40 dark:border-zinc-800/60 shadow-xl">
+                        <!-- Cover Banner -->
+                        <div class="h-44 w-full bg-zinc-900 relative">
+                            <img id="profile-cover" src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=1200&h=400&q=80" class="w-full h-full object-cover brightness-[0.7]" alt="Cover">
+                            <button onclick="triggerCoverUpdate()" class="absolute top-4 right-4 bg-black/60 hover:bg-black/80 text-white backdrop-blur-md px-3.5 py-1.5 rounded-xl text-[10px] font-bold uppercase tracking-wider transition border border-white/10">Edit Banner</button>
+                        </div>
+
+                        <!-- User Metrics Frame -->
+                        <div class="p-6 relative pt-0">
+                            <div class="flex flex-col md:flex-row md:items-end justify-between -mt-16 mb-6">
+                                <div class="flex flex-col md:flex-row md:items-end space-y-4 md:space-y-0 md:space-x-5">
+                                    <div class="relative group cursor-pointer" onclick="triggerPfpUpdate()">
+                                        <img id="profile-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&h=400&q=80" class="w-28 h-28 rounded-2xl border-4 border-[#09090b] object-cover bg-black relative z-10 shadow-lg" alt="Avatar">
+                                        <div class="absolute inset-0 bg-black/40 rounded-2xl z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                                            <span class="text-[9px] text-white font-bold uppercase tracking-wider">Change</span>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <div class="flex items-center space-x-2">
+                                            <h2 id="profile-displayname" class="text-xl font-black uppercase tracking-tight">Aura Luxury</h2>
+                                            <span class="text-[#00F5D4] text-[9px] tracking-widest font-mono border border-[#00F5D4]/20 px-2 py-0.5 rounded-md uppercase bg-[#00F5D4]/5">Verified</span>
+                                        </div>
+                                        <p id="profile-username" class="text-xs text-zinc-400">@aura.revelation</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex space-x-3 mt-4 md:mt-0">
+                                    <button onclick="switchTab('create')" class="px-5 py-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-xs font-semibold uppercase tracking-wider transition border border-zinc-200/30 dark:border-zinc-800/80">Publish Creation</button>
+                                    <button onclick="triggerShareCard()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-pink-500 to-violet-600 text-white text-xs font-bold uppercase tracking-wider hover:shadow-lg transition">Share Card</button>
+                                </div>
+                            </div>
+
+                            <!-- Bio Segment -->
+                            <div class="max-w-2xl space-y-3">
+                                <p id="profile-bio" class="text-xs leading-relaxed text-zinc-600 dark:text-zinc-300">
+                                    Visual curator of next-generation aesthetics. High-end design systems & responsive immersion architecture. ✨🌿
+                                </p>
+                                <div class="flex space-x-4 text-xs font-semibold text-pink-500 dark:text-[#00F5D4]">
+                                    <a id="profile-website" href="https://aura-luxury.design" target="_blank" class="flex items-center space-x-1.5 hover:underline">
+                                        <span>🔗</span>
+                                        <span>aura-luxury.design</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Dashboard Stats Segment -->
+                            <div class="grid grid-cols-3 gap-4 border-t border-zinc-200/40 dark:border-zinc-800/40 mt-6 pt-6">
+                                <div class="text-center md:text-left">
+                                    <span class="text-[10px] uppercase font-mono tracking-wider text-zinc-500 block mb-1">Uploads Workspace</span>
+                                    <span id="profile-posts-count" class="text-xl font-black">12</span>
+                                </div>
+                                <div class="text-center md:text-left">
+                                    <span class="text-[10px] uppercase font-mono tracking-wider text-zinc-500 block mb-1">Followers Node</span>
+                                    <span class="text-xl font-black">128.4K</span>
+                                </div>
+                                <div class="text-center md:text-left">
+                                    <span class="text-[10px] uppercase font-mono tracking-wider text-zinc-500 block mb-1">Following Node</span>
+                                    <span class="text-xl font-black">348</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio grids -->
+                    <div class="space-y-4">
+                        <div class="flex space-x-4 border-b border-zinc-200/40 dark:border-zinc-800/40 pb-2">
+                            <button class="text-xs font-black uppercase tracking-widest text-pink-500 border-b-2 border-pink-500 pb-2 flex items-center space-x-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
+                                <span>Gallery grid</span>
+                            </button>
+                        </div>
+                        <div id="profile-portfolio-grid" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <!-- Dynamic assets rendering -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- MOBILE BOTTOM BAR NAVIGATION -->
+            <footer class="fixed bottom-0 left-0 right-0 lg:hidden z-25 bg-white/80 dark:bg-black/80 backdrop-blur-xl border-t border-zinc-200/50 dark:border-zinc-800/60 py-3 px-4 flex justify-between items-center">
+                <button onclick="switchTab('feed')" data-tab-mobile="feed" class="p-2.5 rounded-2xl transition duration-300 text-pink-500 bg-pink-500/10">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                </button>
+                <button onclick="switchTab('explore')" data-tab-mobile="explore" class="p-2.5 rounded-2xl transition duration-300 text-zinc-500">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                </button>
+                <button onclick="switchTab('create')" data-tab-mobile="create" class="p-2.5 rounded-2xl transition duration-300 text-zinc-500">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </button>
+                <button onclick="switchTab('messages')" data-tab-mobile="messages" class="p-2.5 rounded-2xl transition duration-300 text-zinc-500">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                </button>
+                <button onclick="switchTab('profile')" data-tab-mobile="profile" class="p-2.5 rounded-2xl transition duration-300 text-zinc-500">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                </button>
+            </footer>
+
+        </main>
+    </div>
+
+    <!-- 4. CORE ENGINE JAVASCRIPT -->
+    <script>
+        // Simulated Database State
+        const AuraState = {
+            activeTab: 'feed',
+            theme: 'dark',
+            stories: [
+                { id: 1, username: "solenne_vance", avatar: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=150&h=150&q=80", media: ["https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&h=1000&q=80", "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=600&h=1000&q=80"] },
+                { id: 2, username: "cyber_archetype", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80", media: ["https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&h=1000&q=80"] },
+                { id: 3, username: "athena.digital", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80", media: ["https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&h=1000&q=80"] }
+            ],
+            posts: [
+                { id: 1, user: { username: "solenne_vance", avatar: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=150&h=150&q=80", verified: true }, image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&h=800&q=80", caption: "Constructing ethereal geometries inside virtual spatial architectures. Exploring ambient gradients. #architecture #meta #future", likes: 1254, liked: false, comments: [{ username: "lucas_metier", text: "Stunning rendering balance!" }], location: "Metastate Offices", time: "2 HOURS AGO" },
+                { id: 2, user: { username: "cyber_archetype", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80", verified: true }, image: "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&h=800&q=80", caption: "Neon captured across glass monoliths in Shibuya. Dynamic reflections simulating cyberpunk horizons. 💜🔥 #tokyo #neon #street", likes: 4298, liked: true, comments: [{ username: "solenne_vance", text: "Exceptional palette selection!" }], location: "Shibuya, Tokyo", time: "5 HOURS AGO" }
+            ],
+            chats: [
+                { id: 1, displayName: "Solenne Vance", avatar: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=150&h=150&q=80", online: true, messages: [{ sender: "them", text: "Hey! I saw your recent post. Absolute masterclass of aesthetic color editing.", time: "10:24 AM" }, { sender: "me", text: "Thank you Solenne! Appreciate it coming from you.", time: "10:25 AM" }] },
+                { id: 2, displayName: "Neo-Tokyo Nomad", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80", online: false, messages: [{ sender: "them", text: "Hey traveler, are you shooting in Tokyo next week?", time: "Yesterday" }] }
+            ],
+            exploreImages: [
+                "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=500&h=500&q=80",
+                "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=500&h=700&q=80",
+                "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=500&h=500&q=80",
+                "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=500&h=500&q=80",
+                "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=500&h=750&q=80",
+                "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=500&h=500&q=80"
+            ],
+            reelsList: [
+                "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&h=1100&q=80",
+                "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=600&h=1100&q=80",
+                "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=600&h=1100&q=80"
+            ],
+            notifications: [
+                { id: 1, user: "solenne_vance", details: "liked your spatial architecture post.", time: "2m ago", unread: true },
+                { id: 2, user: "cyber_archetype", details: "commented: 'Top tier chromatic level!'", time: "15m ago", unread: true }
+            ],
+            activeChatId: 1,
+            activeStoryIndex: 0,
+            activeStoryGroup: null,
+            storyProgressInterval: null,
+            currentReelIndex: 0
+        };
+
+        // 5. WINDOW LOAD AND INITIALIZATION
+        window.onload = function() {
+            let progress = 0;
+            const bar = document.getElementById('preloader-bar');
+            const pct = document.getElementById('preloader-percent');
+            
+            const loaderInterval = setInterval(() => {
+                progress += Math.floor(Math.random() * 15) + 5;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(loaderInterval);
+                    setTimeout(() => {
+                        // Dissolve Preloader smoothly
+                        document.getElementById('preloader').classList.add('opacity-0', 'scale-95');
+                        setTimeout(() => {
+                            document.getElementById('preloader').style.display = 'none';
+                            document.getElementById('app-shell').classList.remove('hidden');
+                            document.getElementById('app-shell').classList.add('flex');
+                            renderAll();
+                        }, 700);
+                    }, 500);
+                }
+                bar.style.width = progress + '%';
+                pct.innerText = progress + '%';
+            }, 100);
+        };
+
+        // 6. RENDER DIRECTORY & ROUTING
+        function renderAll() {
+            renderStories();
+            renderFeed();
+            renderExplore();
+            renderChats();
+            renderNotifications();
+            renderProfile();
+        }
+
+        function switchTab(tabId) {
+            AuraState.activeTab = tabId;
+            
+            // Hide all views
+            document.querySelectorAll('.tab-view').forEach(view => {
+                view.classList.add('hidden');
+            });
+            
+            // Unveil active view
+            document.getElementById(`view-${tabId}`).classList.remove('hidden');
+
+            // Toggle menu buttons classes (desktop/mobile)
+            document.querySelectorAll('[data-tab-btn]').forEach(btn => {
+                const bId = btn.getAttribute('data-tab-btn');
+                if (bId === tabId) {
+                    btn.className = "w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all duration-300 text-pink-500 dark:text-white bg-gradient-to-r from-pink-500/10 to-violet-500/10 border-l-4 border-pink-500 font-semibold";
+                } else {
+                    btn.className = "w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all duration-300 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-800 dark:hover:text-zinc-200";
+                }
+            });
+
+            document.querySelectorAll('[data-tab-mobile]').forEach(btn => {
+                const bId = btn.getAttribute('data-tab-mobile');
+                if (bId === tabId) {
+                    btn.className = "p-2.5 rounded-2xl transition duration-300 text-pink-500 bg-pink-500/10";
+                } else {
+                    btn.className = "p-2.5 rounded-2xl transition duration-300 text-zinc-500";
+                }
+            });
+        }
+
+        // Theme Toggle Engine
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                AuraState.theme = 'light';
+            } else {
+                html.classList.add('dark');
+                AuraState.theme = 'dark';
+            }
+        }
+
+        // 7. STORIES HANDLER
+        function renderStories() {
+            const container = document.getElementById('stories-deck');
+            container.innerHTML = `
+                <!-- Self Creation Row -->
+                <div class="flex flex-col items-center flex-shrink-0 cursor-pointer" onclick="switchTab('create')">
+                    <div class="relative w-16 h-16 rounded-full bg-zinc-200 dark:bg-zinc-800 p-0.5 border border-dashed border-zinc-500 flex items-center justify-center group mb-1.5">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80" class="w-14 h-14 rounded-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute bottom-0 right-0 bg-pink-500 text-white rounded-full p-0.5 text-[10px]">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" /></svg>
+                        </div>
+                    </div>
+                    <span class="text-[10px] text-zinc-500">Your Aura</span>
+                </div>
+            `;
+
+            AuraState.stories.forEach(st => {
+                const storyHtml = `
+                    <div class="flex flex-col items-center flex-shrink-0 cursor-pointer" onclick="openStoryViewer(${st.id})">
+                        <div class="relative w-16 h-16 rounded-full p-[2.5px] mb-1.5 transition duration-300 hover:scale-105 bg-gradient-to-tr from-[#FF2A54] via-[#7B2CBF] to-[#00F5D4]">
+                            <div class="w-full h-full rounded-full bg-black p-[2px]">
+                                <img src="${st.avatar}" class="w-full h-full rounded-full object-cover" alt="story user">
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-semibold tracking-wide truncate max-w-[65px]">${st.username}</span>
+                    </div>
+                `;
+                container.innerHTML += storyHtml;
+            });
+        }
+
+        function openStoryViewer(groupId) {
+            const viewer = document.getElementById('story-viewer');
+            const group = AuraState.stories.find(s => s.id === groupId);
+            if (!group) return;
+
+            AuraState.activeStoryGroup = group;
+            AuraState.activeStoryIndex = 0;
+
+            document.getElementById('story-viewer-avatar').src = group.avatar;
+            document.getElementById('story-viewer-username').innerText = group.username;
+            
+            viewer.classList.remove('hidden');
+            viewer.classList.add('flex');
+
+            loadStorySlide();
+        }
+
+        function loadStorySlide() {
+            const group = AuraState.activeStoryGroup;
+            const slideImg = group.media[AuraState.activeStoryIndex];
+            
+            // Update media frame
+            document.getElementById('story-viewer-img').src = slideImg;
+
+            // Generate progress bar frames
+            const progressContainer = document.getElementById('story-progress-container');
+            progressContainer.innerHTML = '';
+            group.media.forEach((_, idx) => {
+                progressContainer.innerHTML += `
+                    <div class="h-1 flex-1 bg-zinc-800 rounded-full overflow-hidden">
+                        <div id="story-bar-${idx}" class="h-full bg-white transition-all duration-100 ease-linear" style="width: 0%"></div>
+                    </div>
+                `;
+            });
+
+            // Fill all complete past bars
+            for(let i=0; i<AuraState.activeStoryIndex; i++) {
+                document.getElementById(`story-bar-${i}`).style.width = '100%';
+            }
+
+            // Start auto progression
+            if (AuraState.storyProgressInterval) clearInterval(AuraState.storyProgressInterval);
+            let pct = 0;
+            AuraState.storyProgressInterval = setInterval(() => {
+                pct += 2;
+                const activeBar = document.getElementById(`story-bar-${AuraState.activeStoryIndex}`);
+                if (activeBar) activeBar.style.width = pct + '%';
+
+                if (pct >= 100) {
+                    clearInterval(AuraState.storyProgressInterval);
+                    nextStorySlide();
+                }
+            }, 80);
+        }
+
+        function nextStorySlide() {
+            const group = AuraState.activeStoryGroup;
+            if (AuraState.activeStoryIndex < group.media.length - 1) {
+                AuraState.activeStoryIndex++;
+                loadStorySlide();
+            } else {
+                closeStoryViewer();
+            }
+        }
+
+        function prevStorySlide() {
+            if (AuraState.activeStoryIndex > 0) {
+                AuraState.activeStoryIndex--;
+                loadStorySlide();
+            }
+        }
+
+        function closeStoryViewer() {
+            if (AuraState.storyProgressInterval) clearInterval(AuraState.storyProgressInterval);
+            document.getElementById('story-viewer').classList.add('hidden');
+            document.getElementById('story-viewer').classList.remove('flex');
+            AuraState.activeStoryGroup = null;
+        }
+
+        function reactToStory(emoji) {
+            // Simulated micro reaction
+            showNotificationToast("You reacted with " + emoji);
+        }
+
+        function sendStoryReply() {
+            const val = document.getElementById('story-reply-input').value;
+            if(!val.trim()) return;
+            showNotificationToast("Reply dispatched successfully!");
+            document.getElementById('story-reply-input').value = '';
+            closeStoryViewer();
+        }
+
+        // 8. FEED HANDLER
+        function renderFeed() {
+            const container = document.getElementById('posts-container');
+            container.innerHTML = '';
+
+            AuraState.posts.forEach(p => {
+                const isLiked = p.liked;
+                const cardHtml = `
+                    <article class="group rounded-3xl bg-white dark:bg-zinc-900/60 border border-zinc-200/40 dark:border-zinc-800/50 p-4 md:p-5 shadow-sm transition-all duration-300 relative overflow-hidden">
+                        <!-- Card header details -->
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <img src="${p.user.avatar}" class="w-10 h-10 rounded-xl object-cover border border-white/10" alt="Avatar">
+                                <div>
+                                    <div class="flex items-center space-x-1.5">
+                                        <span class="text-xs font-bold tracking-wide">${p.user.username}</span>
+                                        ${p.user.verified ? '<span class="text-[#00F5D4] text-[9px] uppercase tracking-widest font-mono">Verified</span>' : ''}
+                                    </div>
+                                    <span class="text-[10px] text-zinc-400 block">${p.location} • ${p.time}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card media rendering -->
+                        <div class="relative rounded-2xl overflow-hidden aspect-square bg-zinc-950 border border-zinc-200/20 dark:border-zinc-800/40 cursor-pointer" onclick="toggleFeedLike(${p.id})">
+                            <img src="${p.image}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Post content">
+                            ${isLiked ? `
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/10 transition duration-300 pointer-events-none">
+                                <svg class="w-20 h-20 text-white/95 drop-shadow-lg fill-current animate-pulse" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                            </div>` : ''}
+                        </div>
+
+                        <!-- Action deck buttons -->
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex items-center space-x-3">
+                                <button onclick="toggleFeedLike(${p.id})" class="p-2 rounded-xl transition hover:scale-110 ${isLiked ? 'text-[#FF2A54] bg-[#FF2A54]/10' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-850'}">
+                                    <svg class="w-5 h-5 ${isLiked ? 'fill-current' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                </button>
+                                <button class="p-2 rounded-xl text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 transition hover:scale-110">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                                </button>
+                                <button onclick="triggerFeedShare()" class="p-2 rounded-xl text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 transition hover:scale-110">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-2-9-9-2 2 9zm0 0l-9-2 2-9 9 2-2 9z" /></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Card comments and reactions count -->
+                        <div class="mt-3 text-xs space-y-1">
+                            <p class="font-bold tracking-wide text-zinc-800 dark:text-zinc-100">${p.likes.toLocaleString()} active reactions</p>
+                            <p class="leading-relaxed text-zinc-600 dark:text-zinc-300">
+                                <span class="font-bold text-black dark:text-white mr-1">${p.user.username}</span>${p.caption}
+                            </p>
+                        </div>
+
+                        <!-- comments deck -->
+                        <div class="mt-2 space-y-1 text-[11px] text-zinc-500">
+                            ${p.comments.map(c => `<p><span class="font-bold text-zinc-700 dark:text-zinc-300 mr-2">${c.username}</span>${c.text}</p>`).join('')}
+                        </div>
+
+                        <!-- Quick comment input -->
+                        <form onsubmit="submitComment(event, ${p.id})" class="mt-4 flex items-center bg-zinc-100 dark:bg-zinc-950 p-1.5 rounded-xl border border-zinc-200/30 dark:border-zinc-800/60">
+                            <input name="text" type="text" placeholder="Add to dialogue..." class="bg-transparent border-none text-[11px] focus:outline-none w-full px-2 text-zinc-800 dark:text-zinc-200">
+                            <button type="submit" class="px-3 py-1.5 rounded-lg bg-zinc-800 dark:bg-zinc-800 text-white dark:text-[#00F5D4] text-[10px] font-bold uppercase hover:scale-105 transition">Post</button>
+                        </form>
+                    </article>
+                `;
+                container.innerHTML += cardHtml;
+            });
+        }
+
+        function toggleFeedLike(postId) {
+            const post = AuraState.posts.find(p => p.id === postId);
+            if (!post) return;
+            post.liked = !post.liked;
+            post.likes += post.liked ? 1 : -1;
+            renderFeed();
+        }
+
+        function submitComment(e, postId) {
+            e.preventDefault();
+            const text = e.target.text.value;
+            if (!text.trim()) return;
+            
+            const post = AuraState.posts.find(p => p.id === postId);
+            if (!post) return;
+            
+            post.comments.push({ username: "aura.revelation", text: text });
+            e.target.reset();
+            renderFeed();
+        }
+
+        function triggerFeedShare() {
+            showNotificationToast("Portfolio card share link copied to clipboard!");
+        }
+
+        // 9. EXPLORE HANDLER
+        function renderExplore() {
+            const grid = document.getElementById('explore-grid');
+            grid.innerHTML = '';
+
+            AuraState.exploreImages.forEach((img, idx) => {
+                const el = `
+                    <div onclick="selectExploreAsset('${img}')" class="relative group overflow-hidden rounded-2xl bg-zinc-900 cursor-pointer border border-zinc-200/10 dark:border-zinc-800/20 ${idx % 4 === 1 ? 'row-span-2 h-[450px]' : 'h-[220px]'}">
+                        <img src="${img}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-between p-4">
+                            <span class="text-[10px] tracking-widest text-[#00F5D4] uppercase font-mono">Dynamic Node</span>
+                            <div class="flex items-center space-x-4 text-white">
+                                <span class="flex items-center space-x-1 font-mono text-xs">❤️ ${Math.floor(Math.random() * 500) + 120}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += el;
+            });
+        }
+
+        function selectExploreAsset(imgUrl) {
+            document.getElementById('studio-preview-img').src = imgUrl;
+            switchTab('create');
+            showNotificationToast("Asset loaded into Creative Studio editor!");
+        }
+
+        // 10. REELS HANDLER
+        function triggerReelLike() {
+            const element = document.getElementById('reel-likes-count');
+            element.innerText = "4.3K (Liked!)";
+            showNotificationToast("Aura Reel reaction captured!");
+        }
+
+        function triggerReelShare() {
+            showNotificationToast("Reel Share code copied to clipboard!");
+        }
+
+        function nextReelDemo() {
+            AuraState.currentReelIndex = (AuraState.currentReelIndex + 1) % AuraState.reelsList.length;
+            document.getElementById('reel-element-img').src = AuraState.reelsList[AuraState.currentReelIndex];
+            document.getElementById('reel-likes-count').innerText = "4.2K";
+        }
+
+        // 11. CREATIVE STUDIO HANDLER
+        function updateStudioFilters() {
+            const b = document.getElementById('slider-brightness').value;
+            const c = document.getElementById('slider-contrast').value;
+            const s = document.getElementById('slider-saturate').value;
+            const bl = document.getElementById('slider-blur').value;
+            const h = document.getElementById('slider-hue').value;
+
+            document.getElementById('label-brightness').innerText = b + '%';
+            document.getElementById('label-contrast').innerText = c + '%';
+            document.getElementById('label-saturate').innerText = s + '%';
+            document.getElementById('label-blur').innerText = bl + 'px';
+            document.getElementById('label-hue').innerText = h + 'deg';
+
+            document.getElementById('studio-preview-img').style.filter = `
+                brightness(${b}%)
+                contrast(${c}%)
+                saturate(${s}%)
+                blur(${bl}px)
+                hue-rotate(${h}deg)
+            `;
+        }
+
+        function applyPreset(name) {
+            // Apply preset parameters
+            const b = document.getElementById('slider-brightness');
+            const c = document.getElementById('slider-contrast');
+            const s = document.getElementById('slider-saturate');
+            const bl = document.getElementById('slider-blur');
+            const h = document.getElementById('slider-hue');
+
+            // Reset presets CSS buttons highlights
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                if (btn.innerText.toLowerCase() === name.toLowerCase() || (name === 'Luxury Gold' && btn.innerText.toLowerCase() === 'gold')) {
+                    btn.className = "preset-btn p-2 rounded-xl text-[10px] font-bold uppercase bg-pink-500 text-white transition";
+                } else {
+                    btn.className = "preset-btn p-2 rounded-xl text-[10px] font-bold uppercase bg-zinc-100 dark:bg-zinc-900 text-zinc-400 hover:bg-zinc-800 transition";
+                }
+            });
+
+            if (name === 'Normal') {
+                b.value = 100; c.value = 100; s.value = 100; bl.value = 0; h.value = 0;
+            } else if (name === 'Noir') {
+                b.value = 90; c.value = 140; s.value = 0; bl.value = 0; h.value = 0;
+            } else if (name === 'Cyberpunk') {
+                b.value = 110; c.value = 120; s.value = 180; bl.value = 0; h.value = 150;
+            } else if (name === 'Ethereal') {
+                b.value = 115; c.value = 95; s.value = 110; bl.value = 3; h.value = 0;
+            } else if (name === 'Luxury Gold') {
+                b.value = 105; c.value = 110; s.value = 130; bl.value = 1; h.value = 35;
+            }
+
+            updateStudioFilters();
+        }
+
+        function togglePreviewMode() {
+            // Switch images inside pool
+            const current = document.getElementById('studio-preview-img').src;
+            const index = AuraState.exploreImages.indexOf(current);
+            const nextIdx = (index + 1) % AuraState.exploreImages.length;
+            document.getElementById('studio-preview-img').src = AuraState.exploreImages[nextIdx];
+        }
+
+        function publishStudioPost() {
+            const preview = document.getElementById('studio-preview-img').src;
+            const captionInput = document.getElementById('studio-caption-input').value || "Premium design synthesized from Creative Studio workstation. #aurasocial #luxury";
+            const locInput = document.getElementById('studio-location-input').value || "Aura Workstation";
+
+            const newPost = {
+                id: AuraState.posts.length + 1,
+                user: { username: "aura.revelation", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80", verified: true },
+                image: preview,
+                caption: captionInput,
+                likes: 1,
+                liked: true,
+                comments: [],
+                location: locInput,
+                time: "JUST NOW"
+            };
+
+            AuraState.posts.unshift(newPost);
+            
+            // Clean editor
+            document.getElementById('studio-caption-input').value = '';
+            document.getElementById('studio-location-input').value = '';
+            applyPreset('Normal');
+
+            switchTab('feed');
+            renderFeed();
+            renderProfile();
+            showNotificationToast("Creation published to live feeds successfully!");
+        }
+
+        // 12. MESSAGES DMS HANDLER
+        function renderChats() {
+            const directory = document.getElementById('chat-directory');
+            directory.innerHTML = '';
+
+            AuraState.chats.forEach(chat => {
+                const isActive = chat.id === AuraState.activeChatId;
+                const lastMsg = chat.messages[chat.messages.length - 1];
+                
+                const element = `
+                    <div onclick="selectChatNode(${chat.id})" class="flex items-center space-x-3 p-3 rounded-2xl cursor-pointer transition ${isActive ? 'bg-zinc-200/60 dark:bg-zinc-900 border-l-4 border-pink-500' : 'hover:bg-zinc-100 dark:hover:bg-zinc-900/45'}">
+                        <div class="relative">
+                            <img src="${chat.avatar}" class="w-11 h-11 rounded-xl object-cover border border-white/15">
+                            ${chat.online ? '<span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white dark:border-zinc-900"></span>' : ''}
+                        </div>
+                        <div class="flex-grow truncate">
+                            <div class="flex justify-between items-center mb-0.5">
+                                <span class="text-xs font-bold text-zinc-800 dark:text-zinc-200">${chat.displayName}</span>
+                                <span class="text-[9px] text-zinc-400 font-mono">Live</span>
+                            </div>
+                            <p class="text-[10px] text-zinc-400 truncate">${lastMsg ? lastMsg.text : 'Encrypted Space Connection'}</p>
+                        </div>
+                    </div>
+                `;
+                directory.innerHTML += element;
+            });
+
+            // Active chat load
+            const currentChat = AuraState.chats.find(c => c.id === AuraState.activeChatId);
+            if (currentChat) {
+                document.getElementById('chat-placeholder').classList.add('md:hidden', 'hidden');
+                document.getElementById('active-chat-container').classList.remove('hidden');
+                document.getElementById('active-chat-container').classList.add('flex');
+
+                document.getElementById('active-chat-avatar').src = currentChat.avatar;
+                document.getElementById('active-chat-name').innerText = currentChat.displayName;
+                document.getElementById('active-chat-status').innerText = currentChat.online ? "Online • Encrypted" : "Offline";
+
+                const timeline = document.getElementById('chat-timeline');
+                timeline.innerHTML = '';
+                currentChat.messages.forEach(msg => {
+                    const isMe = msg.sender === 'me';
+                    const box = `
+                        <div class="flex ${isMe ? 'justify-end' : 'justify-start'} animate-fade-in">
+                            <div class="max-w-md p-3.5 rounded-2xl text-xs space-y-1 ${isMe ? 'bg-gradient-to-r from-[#FF2A54] to-[#7B2CBF] text-white rounded-tr-none' : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-100 rounded-tl-none border border-zinc-200/40 dark:border-zinc-800/45'}">
+                                <p class="leading-relaxed">${msg.text}</p>
+                                <span class="text-[9px] text-zinc-400 font-mono block text-right">${msg.time}</span>
+                            </div>
+                        </div>
+                    `;
+                    timeline.innerHTML += box;
+                });
+                
+                // Auto Scroll to Bottom of active messages
+                timeline.scrollTop = timeline.scrollHeight;
+            }
+        }
+
+        function selectChatNode(chatId) {
+            AuraState.activeChatId = chatId;
+            renderChats();
+        }
+
+        function submitChatMessage(e) {
+            e.preventDefault();
+            const input = document.getElementById('chat-input');
+            const val = input.value;
+            if(!val.trim()) return;
+
+            const chat = AuraState.chats.find(c => c.id === AuraState.activeChatId);
+            if(!chat) return;
+
+            chat.messages.push({ sender: 'me', text: val, time: '10:30 AM' });
+            input.value = '';
+            renderChats();
+
+            // AI Simulated Companion Reaction delay
+            setTimeout(() => {
+                document.getElementById('active-chat-status').innerText = "Is typing...";
+            }, 1000);
+
+            setTimeout(() => {
+                const responseMap = [
+                    "Indeed! That sounds like an amazing spatial collaboration.",
+                    "Let's review the render details tomorrow on our secure workstation.",
+                    "Incredible contrast adjustments. Send me the studio preset!"
+                ];
+                const random = responseMap[Math.floor(Math.random() * responseMap.length)];
+                chat.messages.push({ sender: 'them', text: random, time: '10:31 AM' });
+                renderChats();
+            }, 3000);
+        }
+
+        // Chat List directory search
+        function filterChatDirectory() {
+            const query = document.getElementById('chat-search').value.toLowerCase();
+            const filtered = AuraState.chats.filter(c => c.displayName.toLowerCase().includes(query));
+            renderChats();
+        }
+
+        // 13. NOTIFICATIONS HANDLER
+        function renderNotifications() {
+            const stack = document.getElementById('notifications-stack');
+            stack.innerHTML = '';
+
+            AuraState.notifications.forEach(n => {
+                const row = `
+                    <div class="flex items-center justify-between p-4 rounded-2xl border bg-white dark:bg-zinc-900/40 border-zinc-200/40 dark:border-zinc-800/40 transition-all duration-300">
+                        <div class="flex items-center space-x-4">
+                            <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=80&h=80&q=80" class="w-11 h-11 rounded-xl object-cover">
+                            <div>
+                                <p class="text-xs text-zinc-800 dark:text-zinc-200">
+                                    <span class="font-black mr-1">@${n.user}</span>${n.details}
+                                </p>
+                                <span class="text-[9px] text-zinc-400 font-mono block mt-1">${n.time}</span>
+                            </div>
+                        </div>
+                        <button onclick="dismissNotification(${n.id})" class="p-1.5 rounded-xl text-zinc-400 hover:text-red-500 hover:bg-zinc-800/50 transition">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                        </button>
+                    </div>
+                `;
+                stack.innerHTML += row;
+            });
+        }
+
+        function dismissNotification(id) {
+            AuraState.notifications = AuraState.notifications.filter(n => n.id !== id);
+            renderNotifications();
+        }
+
+        // 14. PROFILE GALLERY HANDLER
+        function renderProfile() {
+            document.getElementById('profile-posts-count').innerText = AuraState.posts.length;
+            
+            const grid = document.getElementById('profile-portfolio-grid');
+            grid.innerHTML = '';
+
+            AuraState.posts.forEach(p => {
+                const element = `
+                    <div class="relative group aspect-square rounded-2xl overflow-hidden bg-zinc-900 border border-white/5 shadow-md cursor-pointer">
+                        <img src="${p.image}" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center space-x-6 text-white text-xs font-mono">
+                            <span class="flex items-center space-x-1.5">❤️ <span>${p.likes}</span></span>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += element;
+            });
+        }
+
+        function triggerPfpUpdate() {
+            const links = [
+                "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&h=400&q=80",
+                "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400&q=80",
+                "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&h=400&q=80"
+            ];
+            const chosen = links[Math.floor(Math.random() * links.length)];
+            document.getElementById('profile-avatar').src = chosen;
+            document.getElementById('user-pfp-sidemenu').src = chosen;
+            showNotificationToast("Avatar updated successfully!");
+        }
+
+        function triggerCoverUpdate() {
+            const links = [
+                "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=1200&h=400&q=80",
+                "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&w=1200&h=400&q=80"
+            ];
+            const chosen = links[Math.floor(Math.random() * links.length)];
+            document.getElementById('profile-cover').src = chosen;
+            showNotificationToast("Profile banner updated!");
+        }
+
+        function triggerShareCard() {
+            showNotificationToast("Aura ID Card compiled and copied to clipboard!");
+        }
+
+        // 15. BRAND INSIGHTS TELEMETRY CHIPS
+        function showChartDetails(day, val) {
+            const tooltip = document.getElementById('chart-tooltip');
+            tooltip.innerHTML = `${day} telemetry metrics: <span class="text-[#00F5D4] font-bold">${val}</span>`;
+            tooltip.classList.add('animate-pulse');
+        }
+
+        // Custom micro toast feedback component
+        function showNotificationToast(msg) {
+            const toast = document.createElement('div');
+            toast.className = "fixed bottom-20 md:bottom-8 right-4 md:right-8 bg-zinc-900 text-white dark:bg-white dark:text-black py-3.5 px-6 rounded-2xl text-xs font-bold uppercase tracking-wider z-50 border border-white/10 shadow-2xl animate-bounce";
+            toast.innerText = msg;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'transition-all', 'duration-500', 'translate-y-2');
+                setTimeout(() => toast.remove(), 600);
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
